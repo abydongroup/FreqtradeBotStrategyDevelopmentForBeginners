@@ -11,11 +11,11 @@ import freqtrade.vendor.qtpylib.indicators as qtpylib
 
 # --- Generic strategy settings ---
 
-class MyStrategyTemplate(IStrategy):
+class abytempv1(IStrategy):
     INTERFACE_VERSION = 2
     
     # Determine timeframe and # of candles before strategysignals becomes valid
-    timeframe = '5m'
+    timeframe = '15m'
     startup_candle_count: int = 30
 
     # Determine roi take profit and stop loss points
