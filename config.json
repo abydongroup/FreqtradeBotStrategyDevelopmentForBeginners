@@ -5,7 +5,9 @@
     "tradable_balance_ratio": 0.99,
     "fiat_display_currency": "USD",
     "dry_run": true,
+    "dry_run_wallet": 1500,
     "cancel_open_orders_on_exit": false,
+    "sell_profit_only": false,
     "unfilledtimeout": {
         "buy": 10,
         "sell": 30,
@@ -14,7 +16,7 @@
     "bid_strategy": {
         "price_side": "bid",
         "ask_last_balance": 0.0,
-        "use_order_book": true,
+        "use_order_book": false,
         "order_book_top": 1,
         "check_depth_of_market": {
             "enabled": false,
@@ -23,7 +25,7 @@
     },
     "ask_strategy": {
         "price_side": "ask",
-        "use_order_book": true,
+        "use_order_book": false,
         "order_book_top": 1
     },
     "order_types": {
@@ -37,26 +39,30 @@
     	"stoploss_on_exchange_interval": 60
     },
     "exchange": {
-        "name": "binance",
+        "name": "kucoin",
         "key": "",
         "secret": "",
+	"password": "",
         "ccxt_config": {},
         "ccxt_async_config": {},
-        "pair_whitelist": [
+	
+    "pair_whitelist": [
 	"BTC/USDT",
 	"ETH/USDT",
-	"ADA/USDT",
-	"XRP/USDT",
-	"LTC/USDT"
+	"DOT/USDT",
+	"SOUL/USDT",
+	"MATIC/USDT"
         ],
-        "pair_blacklist": [
-            "BNB/.*"
-        ]
+	    
+    "pair_blacklist": [
+        "KCS/USDT"
+        ],
+        "outdated_offset": 5,
+        "markets_refresh_interval": 60
     },
     "pairlists": [
         {
 	    "method": "StaticPairList",
-//            "method": "VolumePairList",
             "number_assets": 20,
             "sort_key": "quoteVolume",
             "min_value": 0,
@@ -78,9 +84,32 @@
         "remove_pumps": false
     },
     "telegram": {
-        "enabled": false,
+        "enabled": true,
         "token": "",
-        "chat_id": ""
+        "chat_id": "",
+        "notification_settings": {
+            "status": "on",
+            "warning": "on",
+            "startup": "off",
+            "buy": "of,
+            "buy_fill": "on",
+            "sell": {
+                "roi": "onf",
+                "emergency_sell": "on",
+                "force_sell": "on",
+                "sell_signal": "on",
+                "trailing_stop_loss": "on",
+                "stop_loss": "on",
+                "stoploss_on_exchange": "off",
+                "custom_sell": "off"
+            },
+            "sell_fill": "on",
+            "buy_cancel": "off",
+            "sell_cancel": "off",
+            "protection_trigger": "on",
+            "protection_trigger_global": "on"
+        },
+        "reload": true
     },
     "api_server": {
         "enabled": false,
@@ -88,15 +117,22 @@
         "listen_port": 8080,
         "verbosity": "error",
         "enable_openapi": false,
-        "jwt_secret_key": "SomeSecretKey",
+        "jwt_secret_key": "somethingrandom",
         "CORS_origins": [],
-        "username": "",
-        "password": ""
+        "username": "freqtrader",
+        "password": "SuperSecurePassword"
     },
-    "bot_name": "freqtrade",
+    "bot_name": "Athena-Boto-X",
+    "db_url": "sqlite:///tradesv3.sqlite",
     "initial_state": "running",
     "forcebuy_enable": false,
     "internals": {
-        "process_throttle_secs": 5
-    }
+        "process_throttle_secs": 5,
+        "heartbeat_interval": 60
+    },
+    "disable_dataframe_checks": false,
+    "strategy": "abybasic01",
+    "strategy_path": "user_data/strategies/",
+    "dataformat_ohlcv": "json",
+    "dataformat_trades": "jsongz"
 }
